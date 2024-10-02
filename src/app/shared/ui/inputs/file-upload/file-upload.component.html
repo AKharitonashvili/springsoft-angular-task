@@ -1,0 +1,32 @@
+<section class="flex w-full flex-col items-center">
+  <input
+    type="file"
+    class="hidden"
+    [accept]="requiredFileType"
+    (change)="onFileSelected($event)"
+    [disabled]="isDisabled()"
+    #fileUpload />
+
+  <div class="flex w-full justify-center gap-4" (click)="fileUpload.click()">
+    <div>
+      {{ fileName() || 'Upload Profile Picture' }}
+    </div>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      [disabled]="isDisabled()"
+      class="cursor-pointer">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+  </div>
+
+  @if (filePreviewUrl(); as src) {
+    <div class="mt-4">
+      <img
+        [src]="src"
+        alt="Preview"
+        class="size-40 max-h-60 max-w-full rounded-md border border-gray-300" />
+    </div>
+  }
+</section>
