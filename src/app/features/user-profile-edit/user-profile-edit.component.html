@@ -1,0 +1,68 @@
+<section class="flex justify-center p-4">
+  <form
+    class="flex w-full max-w-sm flex-col gap-4 rounded-md border border-solid border-neutral-500 p-4"
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        formControlName="firstName"
+        placeholder="Enter your first name" />
+      @if (
+        profileForm.get('firstName')?.invalid &&
+        profileForm.get('firstName')?.touched
+      ) {
+        <mat-error> First Name is required </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        formControlName="lastName"
+        placeholder="Enter your last name" />
+      @if (
+        profileForm.get('lastName')?.invalid &&
+        profileForm.get('lastName')?.touched
+      ) {
+        <mat-error> Last Name is required </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        placeholder="Enter your email" />
+      @if (
+        profileForm.get('email')?.invalid && profileForm.get('email')?.touched
+      ) {
+        <mat-error> A valid email is required </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number (Optional)</mat-label>
+      <input
+        matInput
+        formControlName="phoneNumber"
+        placeholder="Enter your phone number" />
+    </mat-form-field>
+
+    <app-file-upload
+      formControlName="profilePicture"
+      [requiredFileType]="'image/*'" />
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="profileForm.invalid">
+      Submit
+    </button>
+  </form>
+</section>
