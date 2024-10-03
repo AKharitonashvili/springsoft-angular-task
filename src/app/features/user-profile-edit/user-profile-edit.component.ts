@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,14 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FileUploadComponent } from '../../shared/ui/inputs/file-upload/file-upload.component';
-
-interface ProfileForm {
-  firstName: FormControl<string | null>;
-  lastName: FormControl<string | null>;
-  email: FormControl<string | null>;
-  phoneNumber: FormControl<string | null>;
-  profilePicture: FormControl<File | null>;
-}
+import { ProfileForm } from '../../shared/ui/interfaces/profile-form.interface';
+import { UserService } from '../../shared/services/user/user.service';
+import { Store } from '@ngrx/store';
+import { UserActions } from '../../shared/stores/user';
 
 @Component({
   selector: 'app-user-profile-edit',
