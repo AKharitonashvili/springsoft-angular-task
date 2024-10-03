@@ -49,13 +49,30 @@
       <mat-label>Phone Number (Optional)</mat-label>
       <input
         matInput
+        type="text"
         formControlName="phoneNumber"
         placeholder="Enter your phone number" />
+
+      @if (profileForm.get('phoneNumber')?.hasError('minlength')) {
+        <mat-error> Phone number must be at least 10 digits long. </mat-error>
+      }
+
+      @if (profileForm.get('phoneNumber')?.hasError('maxlength')) {
+        <mat-error>
+          Phone number cannot be more than 15 digits long.
+        </mat-error>
+      }
+
+      @if (profileForm.get('phoneNumber')?.hasError('pattern')) {
+        <mat-error> Only numbers are allowed in phone number. </mat-error>
+      }
     </mat-form-field>
 
-    <app-file-upload
-      formControlName="profilePicture"
-      [requiredFileType]="'image/*'" />
+    <section class="my-4">
+      <app-file-upload
+        formControlName="profilePicture"
+        [requiredFileType]="'image/*'" />
+    </section>
 
     <button
       mat-raised-button

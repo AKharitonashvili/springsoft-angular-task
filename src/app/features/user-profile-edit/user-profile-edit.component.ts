@@ -43,7 +43,11 @@ export class UserProfileEditComponent implements OnInit {
         Validators.required,
         Validators.email,
       ]),
-      phoneNumber: new FormControl<string | null>(null),
+      phoneNumber: new FormControl<string | null>(null, [
+        Validators.minLength(10),
+        Validators.maxLength(15),
+        Validators.pattern('^[0-9]*$'),
+      ]),
       profilePicture: new FormControl<File | null>(null),
     });
   }
