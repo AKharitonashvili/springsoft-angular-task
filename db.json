@@ -1,84 +1,10 @@
 {
-  "users": [
-    {
-      "id": "1",
-      "firstName": "James",
-      "lastName": "Smith",
-      "email": "james.smith@example.com",
-      "phoneNumber": "+11234567890",
-      "profilePicture": "https://example.com/profiles/james.jpg"
-    },
-    {
-      "id": "2",
-      "firstName": "Maria",
-      "lastName": "Garcia",
-      "email": "maria.garcia@example.com",
-      "phoneNumber": "+11234567891",
-      "profilePicture": "https://example.com/profiles/maria.jpg"
-    },
-    {
-      "id": "3",
-      "firstName": "Robert",
-      "lastName": "Johnson",
-      "email": "robert.johnson@example.com",
-      "phoneNumber": "+11234567892",
-      "profilePicture": "https://example.com/profiles/robert.jpg"
-    },
-    {
-      "id": "4",
-      "firstName": "Patricia",
-      "lastName": "Williams",
-      "email": "patricia.williams@example.com",
-      "phoneNumber": "+11234567893",
-      "profilePicture": "https://example.com/profiles/patricia.jpg"
-    },
-    {
-      "id": "5",
-      "firstName": "Michael",
-      "lastName": "Brown",
-      "email": "michael.brown@example.com",
-      "phoneNumber": "+11234567894",
-      "profilePicture": "https://example.com/profiles/michael.jpg"
-    },
-    {
-      "id": "6",
-      "firstName": "Linda",
-      "lastName": "Jones",
-      "email": "linda.jones@example.com",
-      "phoneNumber": "+11234567895",
-      "profilePicture": "https://example.com/profiles/linda.jpg"
-    },
-    {
-      "id": "7",
-      "firstName": "David",
-      "lastName": "Miller",
-      "email": "david.miller@example.com",
-      "phoneNumber": "+11234567896",
-      "profilePicture": "https://example.com/profiles/david.jpg"
-    },
-    {
-      "id": "8",
-      "firstName": "Elizabeth",
-      "lastName": "Davis",
-      "email": "elizabeth.davis@example.com",
-      "phoneNumber": "+11234567897",
-      "profilePicture": "https://example.com/profiles/elizabeth.jpg"
-    },
-    {
-      "id": "9",
-      "firstName": "John",
-      "lastName": "Wilson",
-      "email": "john.wilson@example.com",
-      "phoneNumber": "+11234567898",
-      "profilePicture": "https://example.com/profiles/john.jpg"
-    },
-    {
-      "id": "10",
-      "firstName": "Jennifer",
-      "lastName": "Moore",
-      "email": "jennifer.moore@example.com",
-      "phoneNumber": "+11234567899",
-      "profilePicture": "https://example.com/profiles/jennifer.jpg"
-    }
-  ]
+  "user": {
+    "id": "1",
+    "firstName": "James",
+    "lastName": "Smith",
+    "email": "james.smith@example.com",
+    "phoneNumber": "+11234567890",
+    "profilePicture": "https://example.com/profiles/james.jpg"
+  }
 }

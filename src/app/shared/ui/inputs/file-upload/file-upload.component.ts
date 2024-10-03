@@ -45,14 +45,16 @@ export class FileUploadComponent implements ControlValueAccessor {
       this.fileName.set(file.name);
 
       const reader = new FileReader();
-      reader.onload = () => this.filePreviewUrl.set(reader.result);
+      reader.onload = () => {
+        this.filePreviewUrl.set(reader.result);
+        const base64Image = reader.result?.toString();
+        this.onChange(base64Image as unknown as File);
+      };
       reader.readAsDataURL(file);
-      this.onChange(file);
     } else {
       alert('Please upload an image file.');
     }
   }
-
   private isImageFile(file: File): boolean {
     return file.type.startsWith('image/');
   }

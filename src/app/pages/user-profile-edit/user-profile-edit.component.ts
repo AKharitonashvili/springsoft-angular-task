@@ -15,9 +15,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FileUploadComponent } from '../../shared/ui/inputs/file-upload/file-upload.component';
 import { ProfileForm } from '../../shared/ui/interfaces/profile-form.interface';
-import { UserService } from '../../shared/services/user/user.service';
+import { Router, RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../shared/ui/button/button/button.component';
+import { User } from '../../shared/ui/interfaces/user.interface';
+import { UserActions, UserSelectors } from '../../shared/stores/user';
 import { Store } from '@ngrx/store';
-import { UserActions } from '../../shared/stores/user';
+import { Observable, combineLatest, map, tap } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -28,13 +32,36 @@ import { UserActions } from '../../shared/stores/user';
     MatInputModule,
     MatButtonModule,
     FileUploadComponent,
+    ButtonComponent,
+    RouterLink,
+    AsyncPipe,
   ],
   templateUrl: './user-profile-edit.component.html',
   styleUrl: './user-profile-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserProfileEditComponent implements OnInit {
+  readonly router = inject(Router);
+  readonly store = inject(Store);
+
   profileForm!: FormGroup<ProfileForm>;
+
+  vm$: Observable<{ user?: User; loading: boolean; error: string | null }> =
+    combineLatest([
+      this.store.select(UserSelectors.selectUser),
+      this.store.select(UserSelectors.selectUserLoading),
+      this.store.select(UserSelectors.selectUserError),
+    ]).pipe(
+      map(([user, loading, error]) => ({ user, loading, error })),
+      tap(({ user }) => {
+        if (user) {
+          const { profilePicture, ...restUser } = user;
+          this.profileForm.patchValue(restUser);
+        } else {
+          this.profileForm.reset();
+        }
+      })
+    );
 
   ngOnInit(): void {
     this.profileForm = new FormGroup<ProfileForm>({
@@ -51,6 +78,8 @@ export class UserProfileEditComponent implements OnInit {
       ]),
       profilePicture: new FormControl<File | null>(null),
     });
+
+    this.store.dispatch(UserActions.loadUser());
   }
 
   onFileChange(event: any) {
@@ -64,5 +93,9 @@ export class UserProfileEditComponent implements OnInit {
     if (this.profileForm.valid) {
       console.log(this.profileForm.value);
     }
+  }
+
+  cancel(): void {
+    this.router.navigate(['user-profile']);
   }
 }

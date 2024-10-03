@@ -1,7 +1,0 @@
-@if (vm$ | async; as vm) {
-  <section>
-    @for (item of vm.users; track $index) {
-      <p>{{ item.firstName }}</p>
-    }
-  </section>
-}

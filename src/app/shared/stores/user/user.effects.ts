@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
@@ -7,22 +7,20 @@ import * as UserActions from './user.actions';
 
 @Injectable()
 export class UserEffects {
-  loadUsers$ = createEffect(() =>
+  readonly actions$ = inject(Actions);
+  readonly userService = inject(UserService);
+
+  loadUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserActions.loadUsers),
+      ofType(UserActions.loadUser),
       mergeMap(() =>
-        this.userService.getUsers().pipe(
-          map(users => UserActions.loadUsersSuccess({ users })),
+        this.userService.getUser().pipe(
+          map(user => UserActions.loadUserSuccess({ user })),
           catchError(error =>
-            of(UserActions.loadUsersFailure({ error: error.message }))
+            of(UserActions.loadUserFailure({ error: error.message }))
           )
         )
       )
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private userService: UserService
-  ) {}
 }

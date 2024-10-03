@@ -1,0 +1,32 @@
+@if (vm$ | async; as vm) {
+  <section class="flex items-center justify-center p-4">
+    <div
+      class="flex w-full max-w-sm flex-col items-center justify-center gap-4 rounded-md border border-solid border-neutral-500 p-4">
+      @if (vm.error) {
+        error
+      } @else if (vm.loading) {
+        loading...
+      } @else if (vm.user) {
+        @if (vm.user; as user) {
+          <div>
+            <img class="size-20" [src]="user.profilePicture" appImgFallBack />
+          </div>
+          <h3 class="font-semibold">
+            {{ user.firstName }} {{ user.lastName }}
+          </h3>
+          <p class="text-sm text-neutral-600">{{ user.email }}</p>
+          <p class="text-sm text-neutral-600">
+            {{ user.phoneNumber | phoneNumber }}
+          </p>
+
+          <section class="my-4 w-full">
+            <app-button
+              [label]="'Edit Profile'"
+              [icon]="'keyboard_arrow_right'"
+              [routerLink]="'/edit-profile'" />
+          </section>
+        }
+      }
+    </div>
+  </section>
+}
