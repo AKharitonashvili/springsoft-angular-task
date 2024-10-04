@@ -6,6 +6,8 @@ export interface UserState {
   user?: User;
   error: string | null;
   loading: boolean;
+  updateLoading?: boolean;
+  updateError?: string | null;
 }
 
 export const initialState: UserState = {
@@ -31,5 +33,16 @@ export const userReducer = createReducer(
   on(UserActions.updateUser, (state, { user }) => ({
     ...state,
     user,
+    updateLoading: true,
+  })),
+  on(UserActions.updateUserSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    updateLoading: false,
+  })),
+  on(UserActions.updateUserFailure, (state, { error }) => ({
+    ...state,
+    updateError: error,
+    updateLoading: false,
   }))
 );

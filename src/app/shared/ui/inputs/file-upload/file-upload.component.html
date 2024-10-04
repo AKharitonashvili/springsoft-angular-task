@@ -1,4 +1,4 @@
-<section class="flex w-full flex-col items-center">
+<section class="flex w-full flex-col items-center" (click)="fileUpload.click()">
   <input
     type="file"
     class="hidden"
@@ -7,7 +7,7 @@
     [disabled]="isDisabled()"
     #fileUpload />
 
-  <div class="flex w-full justify-center gap-4" (click)="fileUpload.click()">
+  <div class="flex w-full justify-center gap-4">
     <div>
       {{ fileName() || 'Upload Profile Picture' }}
     </div>

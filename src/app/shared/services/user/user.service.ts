@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { delay, map, Observable, of, pipe } from 'rxjs';
 import { User } from '../../ui/interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -13,5 +13,11 @@ export class UserService {
 
   public getUser(): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/user`).pipe(delay(100));
+  }
+
+  public updateUser(user: User): Observable<User> {
+    return this.http
+      .patch<void>(`${this.baseUrl}/user`, user)
+      .pipe(delay(100), pipe(map(() => user)));
   }
 }

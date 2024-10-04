@@ -72,7 +72,7 @@ export class UserProfileEditComponent implements OnInit {
         Validators.email,
       ]),
       phoneNumber: new FormControl<string | null>(null, [
-        Validators.minLength(10),
+        Validators.minLength(9),
         Validators.maxLength(15),
         Validators.pattern('^[0-9]*$'),
       ]),
@@ -89,9 +89,10 @@ export class UserProfileEditComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onSubmit(id: string): void {
     if (this.profileForm.valid) {
-      console.log(this.profileForm.value);
+      const user: User = { ...this.profileForm.value, id } as User;
+      this.store.dispatch(UserActions.updateUser({ user }));
     }
   }
 
