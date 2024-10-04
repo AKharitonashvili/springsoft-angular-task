@@ -17,7 +17,7 @@ export class UserService {
 
   public updateUser(user: User): Observable<User> {
     return this.http
-      .patch<User>(`${this.baseUrl}/users/${user.id}`, user) // Use 'users' and include the ID
+      .patch<User>(`${this.baseUrl}/users/${user.id}`, user)
       .pipe(delay(1000));
   }
 }

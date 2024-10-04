@@ -13,6 +13,6 @@ export class PhoneNumberPipe implements PipeTransform {
     const part2 = phoneNumber.slice(6, 9);
     const part3 = phoneNumber.slice(9);
 
-    return `${countryCode} ${part1} ${part2} ${part3}`;
+    return `${countryCode} ${part1} ${part2} ${part3}`.trim();
   }
 }
