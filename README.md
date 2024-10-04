@@ -7,7 +7,7 @@ This application uses Angular 18 and json-server.
 
 1. Clone the repository locally:
    ```bash
-   git clone [https://github.com/AKharitonashvili/springsoft-angular-task/tree/main](https://github.com/AKharitonashvili/springsoft-angular-task.git)
+   git clone https://github.com/AKharitonashvili/springsoft-angular-task.git
    ```
 
 2. Navigate into the project folder:
