@@ -14,5 +14,6 @@ export class ButtonComponent {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() type: 'primary' | 'warn' | 'info' = 'primary';
+  @Input() iconPosition?: 'right' | 'left' = 'right';
   @Input() disabled?: boolean;
 }

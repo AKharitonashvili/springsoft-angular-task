@@ -14,6 +14,7 @@ import { PhoneNumberPipe } from '../../shared/pipes/phone-number/phone-number.pi
 import { ButtonComponent } from '../../shared/ui/button/button/button.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-user',
@@ -25,6 +26,7 @@ import { RouterLink } from '@angular/router';
     ButtonComponent,
     MatIconModule,
     RouterLink,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',

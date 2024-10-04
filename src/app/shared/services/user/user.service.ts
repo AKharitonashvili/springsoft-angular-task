@@ -12,12 +12,12 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   public getUser(): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/user`).pipe(delay(100));
+    return this.http.get<User>(`${this.baseUrl}/user`).pipe(delay(1000));
   }
 
   public updateUser(user: User): Observable<User> {
     return this.http
       .patch<void>(`${this.baseUrl}/user`, user)
-      .pipe(delay(100), pipe(map(() => user)));
+      .pipe(delay(1000), pipe(map(() => user)));
   }
 }

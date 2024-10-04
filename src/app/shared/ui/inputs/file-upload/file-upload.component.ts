@@ -64,7 +64,7 @@ export class FileUploadComponent implements ControlValueAccessor {
       this.fileName.set(value.name);
       const reader = new FileReader();
       reader.onload = () => this.filePreviewUrl.set(reader.result);
-      reader.readAsDataURL(value);
+      reader.readAsDataURL(this.ensureBlob(value));
     } else {
       this.fileName.set(null);
       this.filePreviewUrl.set(null);
@@ -85,5 +85,24 @@ export class FileUploadComponent implements ControlValueAccessor {
 
   onTouchedEvent() {
     this.onTouched();
+  }
+
+  ensureBlob(value: any): Blob {
+    if (value instanceof Blob) {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      const base64Data = value.split(',')[1];
+      const binaryString = atob(base64Data);
+      const len = binaryString.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return new Blob([bytes], { type: 'image/jpeg' });
+    }
+
+    throw new Error('Value cannot be converted to a Blob');
   }
 }

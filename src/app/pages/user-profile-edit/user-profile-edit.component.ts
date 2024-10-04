@@ -22,6 +22,7 @@ import { UserActions, UserSelectors } from '../../shared/stores/user';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -35,6 +36,7 @@ import { AsyncPipe } from '@angular/common';
     ButtonComponent,
     RouterLink,
     AsyncPipe,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './user-profile-edit.component.html',
   styleUrl: './user-profile-edit.component.scss',
@@ -55,8 +57,7 @@ export class UserProfileEditComponent implements OnInit {
       map(([user, loading, error]) => ({ user, loading, error })),
       tap(({ user }) => {
         if (user) {
-          const { profilePicture, ...restUser } = user;
-          this.profileForm.patchValue(restUser);
+          this.profileForm.patchValue(user);
         } else {
           this.profileForm.reset();
         }

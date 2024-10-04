@@ -1,11 +1,13 @@
 @if (vm$ | async; as vm) {
   <section class="flex items-center justify-center p-4">
     <div
-      class="flex w-full max-w-sm flex-col items-center justify-center gap-4 rounded-md border border-solid border-neutral-500 p-4">
+      class="flex min-h-80 w-full max-w-sm flex-col items-center justify-center gap-4 rounded-md border border-solid border-neutral-500 p-4">
       @if (vm.error) {
         error
       } @else if (vm.loading) {
-        loading...
+        <section class="flex size-full items-center justify-center">
+          <mat-spinner [strokeWidth]="4"></mat-spinner>
+        </section>
       } @else if (vm.user) {
         @if (vm.user; as user) {
           <div>

@@ -1,13 +1,15 @@
 @if (vm$ | async; as vm) {
-  @if (vm.error) {
-  } @else if (vm.loading) {
-  } @else {
-    <section class="flex justify-center p-4">
-      @if (vm.user; as user) {
-        <form
-          class="flex w-full max-w-sm flex-col gap-4 rounded-md border border-solid border-neutral-500 p-4"
-          [formGroup]="profileForm"
-          (ngSubmit)="onSubmit(user.id)">
+  <section class="flex justify-center p-4">
+    <form
+      class="flex min-h-80 w-full max-w-sm flex-col gap-4 rounded-md border border-solid border-neutral-500 p-4"
+      [formGroup]="profileForm">
+      @if (vm.error) {
+      } @else if (vm.loading) {
+        <section class="flex size-full items-center justify-center">
+          <mat-spinner [strokeWidth]="4"></mat-spinner>
+        </section>
+      } @else {
+        @if (vm.user; as user) {
           <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
             <input
@@ -83,13 +85,18 @@
               [requiredFileType]="'image/*'" />
           </section>
 
-          <app-button [label]="'Save'" [disabled]="profileForm.invalid" />
+          <app-button
+            [label]="'Save'"
+            [disabled]="profileForm.invalid"
+            (click)="onSubmit(user.id)" />
           <app-button
             [label]="'Cancel'"
             [type]="'warn'"
+            [icon]="'keyboard_arrow_left'"
+            [iconPosition]="'left'"
             [routerLink]="'/user-profile'" />
-        </form>
+        }
       }
-    </section>
-  }
+    </form>
+  </section>
 }
