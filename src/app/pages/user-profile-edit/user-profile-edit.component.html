@@ -3,8 +3,7 @@
     <form
       class="flex min-h-80 w-full max-w-sm flex-col gap-4 rounded-md border border-solid border-neutral-500 p-4"
       [formGroup]="profileForm">
-      @if (vm.error) {
-      } @else if (vm.loading) {
+      @if (vm.loading) {
         <section class="flex size-full items-center justify-center">
           <mat-spinner [strokeWidth]="4"></mat-spinner>
         </section>
@@ -95,6 +94,13 @@
             [icon]="'keyboard_arrow_left'"
             [iconPosition]="'left'"
             [routerLink]="'/user-profile'" />
+        }
+
+        @if (vm.error; as error) {
+          <section
+            class="my-4 flex size-full items-center justify-center rounded-md border-2 border-solid border-red-500 p-4">
+            <mat-error> {{ error }}</mat-error>
+          </section>
         }
       }
     </form>

@@ -15,6 +15,7 @@ import { ButtonComponent } from '../../shared/ui/button/button/button.component'
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-user',
@@ -27,6 +28,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     RouterLink,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',

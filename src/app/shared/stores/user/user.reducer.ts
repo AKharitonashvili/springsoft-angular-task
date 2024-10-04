@@ -27,6 +27,7 @@ export const userReducer = createReducer(
       ...state,
       loading: false,
       user,
+      error: null,
     })
   ),
   on(

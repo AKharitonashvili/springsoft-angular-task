@@ -17,7 +17,11 @@ export class UserEffects {
         this.userService.getUser().pipe(
           map(user => UserActions.loadUserSuccess({ user })),
           catchError(error =>
-            of(UserActions.loadUserFailure({ error: error.message }))
+            of(
+              UserActions.loadUserFailure({
+                error: 'Error: Please try again later',
+              })
+            )
           )
         )
       )
@@ -31,7 +35,11 @@ export class UserEffects {
         this.userService.updateUser(user).pipe(
           map(user => UserActions.updateUserSuccess({ user })),
           catchError(error =>
-            of(UserActions.updateUserFailure({ error: error.message }))
+            of(
+              UserActions.updateUserFailure({
+                error: 'Error: Please try again later',
+              })
+            )
           )
         )
       )
