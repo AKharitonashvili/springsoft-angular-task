@@ -79,14 +79,18 @@ describe('UserComponent', () => {
     expect(spinner).toBeTruthy();
   });
 
-  it('should display error message when there is an error', () => {
+  it('should display the error message when there is an error', () => {
     const errorMessage = 'Error loading user';
     store.overrideSelector(UserSelectors.selectUserError, errorMessage);
     store.refreshState();
     fixture.detectChanges();
-
-    const error = fixture.debugElement.query(By.css('mat-error'));
-    expect(error.nativeElement.textContent).toContain(errorMessage);
+    const errorMessageElement = fixture.debugElement.query(
+      By.css('#errorMessage')
+    );
+    expect(errorMessageElement).toBeTruthy();
+    expect(errorMessageElement.nativeElement.textContent).toContain(
+      errorMessage
+    );
   });
 
   it('should display user information and edit button when user data is available', () => {

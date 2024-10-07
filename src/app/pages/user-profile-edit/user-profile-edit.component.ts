@@ -55,13 +55,9 @@ export class UserProfileEditComponent implements OnInit {
       this.store.select(UserSelectors.selectUserError),
     ]).pipe(
       map(([user, loading, error]) => ({ user, loading, error })),
-      tap(({ user }) => {
-        if (user) {
-          this.profileForm.patchValue(user);
-        } else {
-          this.profileForm.reset();
-        }
-      })
+      tap(({ user }) =>
+        user ? this.profileForm.patchValue(user) : this.profileForm.reset()
+      )
     );
 
   ngOnInit(): void {

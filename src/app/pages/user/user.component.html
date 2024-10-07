@@ -4,6 +4,7 @@
       class="flex min-h-80 w-full max-w-sm flex-col items-center justify-center gap-4 rounded-md border border-solid border-neutral-500 p-4">
       @if (vm.error; as error) {
         <p
+          id="errorMessage"
           class="my-4 flex size-full items-center justify-center rounded-md border-2 border-solid border-red-500 bg-red-500 p-4 font-semibold text-white">
           {{ error }}
         </p>
