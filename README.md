@@ -24,11 +24,9 @@ This application uses Angular 18 and json-server.
    ```bash
    npm run start
    ```
-   Or
-   ```bash
-   json-server --watch db.json
-   ```
-   and
+   
+   This project uses json server as mock api data, you need to run 'npm run start' command, which contains json-server --watch db.json and ng serve --o commands.
+
      ```bash
    ng serve --o
    ```
