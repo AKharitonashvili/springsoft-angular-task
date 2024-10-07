@@ -97,10 +97,10 @@
         }
 
         @if (vm.error; as error) {
-          <section
-            class="my-4 flex size-full items-center justify-center rounded-md border-2 border-solid border-red-500 p-4">
-            <mat-error> {{ error }}</mat-error>
-          </section>
+          <p
+            class="my-4 flex size-full items-center justify-center rounded-md border-2 border-solid border-red-500 p-4  bg-red-500 text-white font-semibold">
+            {{ error }}
+          </p>
         }
       }
     </form>
