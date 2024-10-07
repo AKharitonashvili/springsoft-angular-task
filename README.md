@@ -27,8 +27,6 @@ This application uses Angular 18 and json-server.
    
    This project uses json server as mock api data, you need to run 'npm run start' command, which contains json-server --watch db.json and ng serve --o commands.
 
-     ```bash
-   ng serve --o
-   ```
+
 
 The application will run on `http://localhost:4200`.
