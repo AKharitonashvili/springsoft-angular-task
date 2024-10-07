@@ -80,7 +80,13 @@ describe('UserProfileEditComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(UserActions.loadUser());
   });
 
-  it('should update form values when user data is available', () => {
+  it('should navigate to user-profile on cancel', () => {
+    component.cancel();
+    expect(router.navigate).toHaveBeenCalledWith(['user-profile']);
+  });
+
+  // Test form pre-populating
+  it('should successfully pre-populate form data after user data loads', () => {
     store.overrideSelector(UserSelectors.selectUser, mockUser);
     store.refreshState();
     fixture.detectChanges();
@@ -88,8 +94,13 @@ describe('UserProfileEditComponent', () => {
     expect(component.profileForm.value.firstName).toBe(mockUser.firstName);
     expect(component.profileForm.value.lastName).toBe(mockUser.lastName);
     expect(component.profileForm.value.email).toBe(mockUser.email);
+    expect(component.profileForm.value.phoneNumber).toBe(mockUser.phoneNumber);
+    expect(component.profileForm.value.profilePicture).toBe(
+      mockUser.profilePicture
+    );
   });
 
+  // Successal submission
   it('should dispatch updateUser action on form submit', () => {
     spyOn(store, 'dispatch');
     component.profileForm.setValue({
@@ -104,10 +115,5 @@ describe('UserProfileEditComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(
       UserActions.updateUser({ user: mockUser })
     );
-  });
-
-  it('should navigate to user-profile on cancel', () => {
-    component.cancel();
-    expect(router.navigate).toHaveBeenCalledWith(['user-profile']);
   });
 });
